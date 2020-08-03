@@ -1,0 +1,21 @@
+<li class="gallery__item">
+    <div class="gallery__card card">
+        <img src={{userImageURL}} alt={{user}} class="gallery__image"
+            width="480" />
+        <div class="card__content">
+            <h2 class="card__name">{{id}}</h2>
+            <p class="card__descr">{{tags}}</p>
+        </div>
+    </div>
+</li>
+ {{!-- width="{{webformatWidth}}" --}}
+
+ <a class="photo-card__link"
+    {{!-- href="https://cdn.pixabay.com/photo/2010/12/13/10/13/tulips-2546_1280.jpg"> --}}
+    href="{{webformatURL}}">
+    <img class="photo-card__image"
+        {{!-- src="https://cdn.pixabay.com/photo/2010/12/13/10/13/tulips-2546__340.jpg" --}}
+        src="{{webformatURL}}"
+        {{!-- data-source="https://cdn.pixabay.com/photo/2010/12/13/10/13/tulips-2546_1280.jpg" --}}
+        data-source="{{largeImageURL}}" alt="{{user}}" />
+</a>
