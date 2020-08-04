@@ -1,18 +1,29 @@
-.clear-button {
+.button {
   display: block;
-  max-width: 145px;
+  min-width: 140px;
+  font-size: 16px;
   font-family: 'Montserrat', sans-serif;
-  color: rgb(255, 78, 80);
-  font-weight: 700;
-  border: 2px solid rgb(255, 78, 80);
-  border-radius: 20px;
-  background-color: rgb(248, 229, 229);
-  padding: 10px 50px;
+  font-weight: 900;
+  color: #604805;
+  text-transform: uppercase;
+  border: 2px solid #604805;
+  border-radius: 10px;
+  background-color: #faf0b8;
+  padding: 10px 10px;
   cursor: pointer;
+  margin-bottom: 10px;
+
+  &--load{
+    margin-bottom: 50px;
+  }
+  
+  &--search{
+    margin-right: 20px;
+  }
 
   &:hover,
   &:focus {
-    box-shadow: 1px 1px 7px 3px rgb(255, 78, 80);
+    box-shadow: 1px 1px 7px 3px #604805;
     transition: all 0.2s linear;
   }
 }

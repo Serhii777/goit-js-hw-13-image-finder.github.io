@@ -5,11 +5,6 @@ export default {
   page: 2,
   query: '',
   fetchImages() {
-    // const options = {
-    //   headers: {
-    //     Authorization: '17627900-033e401422c15b0db6e889732',
-    //   },
-    // };
     const key = '?key=17627900-033e401422c15b0db6e889732';
     const type = '&image_type=photo';
     const orientation = '&orientation=horizontal';

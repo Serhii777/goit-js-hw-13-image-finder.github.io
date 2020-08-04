@@ -10,7 +10,7 @@
       rel="stylesheet"
     />
   </head>
-  
+
   <body>
     <form class="search-form" id="search-form">
       <input
@@ -24,7 +24,7 @@
       <button
         id="search-button"
         type="submit"
-        class="clear-button"
+        class="button button--search"
         data-action="search-image"
       >
         Search
@@ -32,7 +32,7 @@
       <button
         id="clear-button"
         type="reset"
-        class="clear-button"
+        class="button button--clear"
         data-action="clear-image"
       >
         Clear
@@ -42,8 +42,8 @@
     <section class="section-gallery">
       <ul id="gallery-list" class="gallery js-gallery"></ul>
     </section>
- 
-    <button type="button" data-action="load-more" class="load-button">
+
+    <button type="button" class="button button--load" data-action="load-more">
       Load more
     </button>
 

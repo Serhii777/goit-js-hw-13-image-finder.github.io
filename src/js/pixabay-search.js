@@ -20,7 +20,6 @@ function searchFormSubmitHandler(event) {
 
   const form = event.currentTarget;
   const input = form.elements.query;
-  // console.log(input.value);
 
   clearListItems();
 
@@ -35,6 +34,41 @@ function searchFormSubmitHandler(event) {
 function loadMoreBtnHandler() {
   spinner.show();
   fetchImages();
+  // element.scrollTo({
+  // window.scrollIntoView({
+    // top: 1000,
+    // block: 'center',
+    // behavior: 'smooth',
+  // });
+  // window.scrollTo(0, 500);
+  // window.scrollTo(pageX,pageY)
+  // document.documentElement.clientHeight;
+  // document.documentElement.scrollHeight;
+
+  // var hiddenElement = document.getElementById("box");
+  // var btn = document.querySelector('.btn');
+  // function handleButtonClick() {
+  //    hiddenElement.scrollIntoView({block: "center", behavior: "smooth"});
+  // }
+  // btn.addEventListener('click', handleButtonClick);
+
+  // window.scroll(0,findPos(document.getElementById("divFirst")));
+
+  // const y = element.getBoundingClientRect().top + window.scrollY;
+  // window.scroll({
+  //   top: y,
+  //   behavior: 'smooth',
+  // });
+
+  // var scrollDiv = document.getElementById("myDiv").offsetTop;
+//   let scrollDiv = refs.galleryList.offsetTop;
+// window.scrollTo({ top: scrollDiv, behavior: 'smooth'});
+scrollIntoView()
+}
+
+function scrollIntoView(selector, offset = 0) {
+  // window.scroll(0, document.querySelector(selector).offsetTop - offset);
+  window.scroll(0, refs.galleryList.offsetTop + offset);
 }
 
 function fetchImages() {
@@ -43,6 +77,8 @@ function fetchImages() {
   pixabayService
     .fetchImages()
     .then(hits => {
+      console.log(hits);
+
       spinner.hide();
       insertListItems(hits);
     })
