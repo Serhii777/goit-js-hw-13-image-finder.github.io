@@ -1,7 +1,6 @@
-<li class="gallery__item">
+{{#each this}} <li class="gallery__item">
     <div class="photo-card">
-        <a class="photo-card__link"
-                        href="{{largeImageURL}}">
+        <a class="photo-card__link" href="{{largeImageURL}}">
             <img class="photo-card__image"
                 {{!-- src="https://cdn.pixabay.com/photo/2010/12/13/10/13/tulips-2546__340.jpg" --}}
                 src="{{webformatURL}}"
@@ -19,9 +18,5 @@
                 <i class="material-icons">cloud_download</i> {{downloads}} </p>
         </div>
     </div>
-</li> {{!-- •	webformatURL - ссылка на маленькое изображение для списка карточек
-•	largeImageURL - ссылка на большое изображение (смотри пункт 'дополнительно')
-•	likes - количество лайков
-•	views - количество просмотров
-•	comments - количество комментариев
-•	downloads - количество загрузок --}}
+</li>
+</li> {{/each}}

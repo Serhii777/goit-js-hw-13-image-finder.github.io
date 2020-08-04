@@ -7,10 +7,11 @@ const galleryRef = document.querySelector('.js-gallery');
 
 const picturesRef = 'https://pixabay.com/api/';
 const key = '?key=17627900-033e401422c15b0db6e889732';
-const choose = '&q=art+body';
 const type = '&image_type=photo';
+const orientation = '&orientation=horizontal';
+const choose = '&q=body+woman';
 
-fetch(picturesRef + key + choose + type)
+fetch(picturesRef + key + type + orientation + choose)
   .then(response => response.json())
   .then(data => {
     console.log(data);
@@ -21,7 +22,7 @@ fetch(picturesRef + key + choose + type)
 
 function renderGallery(pictures) {
   const gallery = pictures.map(picture => galleryTemplate(picture)).join('');
-  console.log(gallery);
+  // console.log(gallery);
 
   galleryRef.insertAdjacentHTML('beforeend', gallery);
 }
