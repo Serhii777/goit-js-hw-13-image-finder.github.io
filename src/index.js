@@ -4,5 +4,5 @@
 // import './js/services/notices';
 import './js/pixabay';
 
-import './sass/styles.scss';
+import './sass/main.scss';
 

@@ -1,8 +1,14 @@
 <li class="gallery__item">
     <div class="photo-card">
-         <img src="{{webformatURL}}" alt="{{user}}" />
-          <div
-            class="stats">
+        <a class="photo-card__link"
+                        href="{{largeImageURL}}">
+            <img class="photo-card__image"
+                {{!-- src="https://cdn.pixabay.com/photo/2010/12/13/10/13/tulips-2546__340.jpg" --}}
+                src="{{webformatURL}}"
+                {{!-- data-source="https://cdn.pixabay.com/photo/2010/12/13/10/13/tulips-2546_1280.jpg" --}}
+                data-source="{{largeImageURL}}" alt="{{user}}" />
+        </a>
+        <div class="stats">
             <p class="stats-item">
                 <i class="material-icons">thumb_up</i> {{likes}} </p>
             <p class="stats-item">
@@ -13,8 +19,7 @@
                 <i class="material-icons">cloud_download</i> {{downloads}} </p>
         </div>
     </div>
-</li>
- {{!-- •	webformatURL - ссылка на маленькое изображение для списка карточек
+</li> {{!-- •	webformatURL - ссылка на маленькое изображение для списка карточек
 •	largeImageURL - ссылка на большое изображение (смотри пункт 'дополнительно')
 •	likes - количество лайков
 •	views - количество просмотров
