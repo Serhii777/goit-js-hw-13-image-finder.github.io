@@ -8,22 +8,39 @@
   text-transform: uppercase;
   border: 2px solid #604805;
   border-radius: 10px;
-  background-color: #faf0b8;
+  background-color: #f8f1ca;
   padding: 10px 10px;
-  cursor: pointer;
   margin-bottom: 10px;
+  cursor: pointer;
+  transition: all 0.2s linear;
 
-  &--load{
+  &--load {
     margin-bottom: 50px;
   }
-  
-  &--search{
+
+  &--search {
     margin-right: 20px;
+
+    @media (max-width: 680px) {
+      margin-right: 0px;
+    }
   }
 
   &:hover,
   &:focus {
     box-shadow: 1px 1px 7px 3px #604805;
-    transition: all 0.2s linear;
   }
 }
+
+// @media (max-width: 680px) {
+//   margin-bottom: 20px;
+//   max-width: 400px;
+// }
+
+// @media (max-width: 560px) {
+//   max-width: 340px;
+// }
+
+// @media (max-width: 370px) {
+//   max-width: 240px;
+// }

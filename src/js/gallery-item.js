@@ -1,5 +1,5 @@
-import users from './gallery-items.js';
-// console.table(users);
+import spinner from './spinner';
+
 const refs = {
    galleryRef: document.querySelector('.js-gallery'),
    lightboxRef: document.querySelector('.js-lightbox'),
@@ -8,38 +8,17 @@ const refs = {
    closeModalRef: document.querySelector('.lightbox__overlay'),
 };
 
-const createGallery = item => {
-   const itemRef = document.createElement('li');
-   itemRef.classList.add('gallery__item');
-
-   const linkRef = document.createElement('a');
-   linkRef.classList.add('gallery__link');
-   linkRef.setAttribute('href', item.original);
-
-   const imageRef = document.createElement('img');
-   imageRef.classList.add('gallery__image');
-   imageRef.setAttribute('src', item.preview);
-   imageRef.setAttribute('data-source', item.original);
-   imageRef.setAttribute('alt', item.description);
-
-   linkRef.append(imageRef);
-   itemRef.append(linkRef);
-   return itemRef;
-};
-
-const galleryItems = users.map(item => createGallery(item));
-
-refs.galleryRef.append(...galleryItems);
-console.log(refs.galleryRef);
-
 refs.galleryRef.addEventListener('click', onGalleryClick);
 
 function onGalleryClick(event) {
    event.preventDefault();
+   spinner.show();
    if (event.target.nodeName !== 'IMG') {
       console.log('Кликнули не по картинке!');
+      spinner.hide();
       return;
    }
+   spinner.show();
    console.log('Кликнули в картинку!');
 
    const imageRef = event.target;
@@ -49,6 +28,7 @@ function onGalleryClick(event) {
    setLargeImageSrc(largeImageUrl);
    setLargeImageAlt(largeImageAlt);
    onOpenModal();
+   // spinner.hide();
 }
 
 function setLargeImageSrc(url) {
@@ -61,8 +41,10 @@ function setLargeImageAlt(alt) {
 
 
 function onOpenModal() {
+   spinner.show();
    if (refs.lightboxRef.classList.contains('is-open')) {
       console.log('Такой класс уже есть!');
+      // spinner.hide();
       return;
    }
    console.log('Добавляем класс!');
@@ -71,9 +53,13 @@ function onOpenModal() {
    refs.closeModalBtn.addEventListener('click', onCloseModalBtn);
    document.addEventListener('click', onCloseModalRef);
    window.addEventListener('keydown', onPressEscape);
+   // spinner.hide();
 }
 
+
+
 function onCloseModal() {
+   spinner.hide();
    refs.closeModalBtn.removeEventListener('click', onCloseModalBtn);
    document.removeEventListener('click', onCloseModalRef);
    window.removeEventListener('keydown', onPressEscape);

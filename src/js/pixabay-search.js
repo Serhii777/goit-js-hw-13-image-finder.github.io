@@ -1,10 +1,13 @@
 import pixabayService from './services/pixabay-services';
+import pixabayGallery from './gallery-item';
 import spinner from './spinner';
 import galleryTemplate from '../templates/photoGallery.hbs';
+import { noticeError, mySuccess } from './services/notices';
 
 const refs = {
   searchForm: document.querySelector('#search-form'),
   galleryList: document.querySelector('#gallery-list'),
+  galleryItem: document.querySelector('.gallery__item'),
   searchImageBtn: document.querySelector('button[data-action="search-image"]'),
   clearImageBtn: document.querySelector('button[data-action="clear-image"]'),
   loadMoreBtn: document.querySelector('button[data-action="load-more"]'),
@@ -25,6 +28,7 @@ function searchFormSubmitHandler(event) {
 
   pixabayService.resetPage();
   pixabayService.searchQuery = input.value;
+  // console.log(input.value);
 
   fetchImages();
 
@@ -34,55 +38,56 @@ function searchFormSubmitHandler(event) {
 function loadMoreBtnHandler() {
   spinner.show();
   fetchImages();
-  // element.scrollTo({
-  // window.scrollIntoView({
-    // top: 1000,
-    // block: 'center',
-    // behavior: 'smooth',
-  // });
-  // window.scrollTo(0, 500);
-  // window.scrollTo(pageX,pageY)
-  // document.documentElement.clientHeight;
-  // document.documentElement.scrollHeight;
 
-  // var hiddenElement = document.getElementById("box");
-  // var btn = document.querySelector('.btn');
-  // function handleButtonClick() {
-  //    hiddenElement.scrollIntoView({block: "center", behavior: "smooth"});
-  // }
-  // btn.addEventListener('click', handleButtonClick);
-
-  // window.scroll(0,findPos(document.getElementById("divFirst")));
-
-  // const y = element.getBoundingClientRect().top + window.scrollY;
-  // window.scroll({
-  //   top: y,
-  //   behavior: 'smooth',
-  // });
-
-  // var scrollDiv = document.getElementById("myDiv").offsetTop;
-//   let scrollDiv = refs.galleryList.offsetTop;
-// window.scrollTo({ top: scrollDiv, behavior: 'smooth'});
-scrollIntoView()
+  window.scrollTo({
+    top: 1000,
+    behavior: 'smooth',
+  });
 }
 
-function scrollIntoView(selector, offset = 0) {
-  // window.scroll(0, document.querySelector(selector).offsetTop - offset);
-  window.scroll(0, refs.galleryList.offsetTop + offset);
-}
+// TODO Сделать скролл на 12 Об. ---> переделать
 
+//* Прокрутка вверх -> ГОТОВО (переписать по проще)
+
+// TODO Infinite Scroll
+// var elem = document.querySelector('.container');
+// let infScroll = new InfiniteScroll( elem, {
+// var infScroll = new InfiniteScroll( refs.galleryList, {
+// options
+// path: '.pagination__next',
+// append: '.gallery__item',
+// history: false,
+// });
+// infScroll.loadNextPage();
+// infScroll.fetchImages();
+
+// element argument can be a selector string
+//   for an individual element
+// var infScroll = new InfiniteScroll( '.container', {
+// options
+// });
+
+//! Отрисовка страницы
 function fetchImages() {
   spinner.show();
 
   pixabayService
     .fetchImages()
     .then(hits => {
-      console.log(hits);
+      // console.log(hits);
+      console.log(hits.length);
 
-      spinner.hide();
-      insertListItems(hits);
+      if (hits.length === 0) {
+        spinner.hide();
+        return noticeError();
+      } else {
+        spinner.hide();
+        insertListItems(hits);
+        mySuccess();
+      }
     })
     .catch(error => {
+      noticeError();
       console.warn(error);
     });
 }

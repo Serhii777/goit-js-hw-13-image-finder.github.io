@@ -1,7 +1,7 @@
-{{#each this}} <li class="gallery__item">
-    <div class="photo-card">
-        <a class="photo-card__link" href="{{largeImageURL}}">
-            <img class="photo-card__image"
+{{#each this}} <li class="gallery__item js-gallery__item">
+    <div class="photo-card js-photo-card">
+        <a class="photo-card__link js-photo-card__link" href="{{largeImageURL}}">
+            <img class="photo-card__image js-photo-card__image"
                 {{!-- src="https://cdn.pixabay.com/photo/2010/12/13/10/13/tulips-2546__340.jpg" --}}
                 src="{{webformatURL}}"
                 {{!-- data-source="https://cdn.pixabay.com/photo/2010/12/13/10/13/tulips-2546_1280.jpg" --}}
