@@ -12,54 +12,56 @@
   </head>
 
   <body>
-    <form class="search-form" id="search-form">
-      <input
-        id="search-input"
-        type="text"
-        class="search-input"
-        name="query"
-        placeholder="Search images..."
-        autocomplete="off"
-      />
-      <button
-        id="search-button"
-        type="submit"
-        class="button button--search"
-        data-action="search-image"
-      >
-        Search
+    <div class="wrapper">
+      <form class="search-form" id="search-form">
+        <input
+          id="search-input"
+          type="text"
+          class="search-input"
+          name="query"
+          placeholder="Search images..."
+          autocomplete="off"
+        />
+        <button
+          id="search-button"
+          type="submit"
+          class="button button--search"
+          data-action="search-image"
+        >
+          Search
+        </button>
+        <button
+          id="clear-button"
+          type="reset"
+          class="button button--clear"
+          data-action="clear-image"
+        >
+          Clear
+        </button>
+      </form>
+
+      <section class="section-gallery">
+        <ul id="gallery-list" class="gallery js-gallery"></ul>
+      </section>
+
+      <button type="button" class="button button--load" data-action="load-more">
+        Load more
       </button>
-      <button
-        id="clear-button"
-        type="reset"
-        class="button button--clear"
-        data-action="clear-image"
-      >
-        Clear
-      </button>
-    </form>
 
-    <section class="section-gallery">
-      <ul id="gallery-list" class="gallery js-gallery"></ul>
-    </section>
+      <div class="lightbox js-lightbox">
+        <div class="lightbox__overlay"></div>
 
-    <button type="button" class="button button--load" data-action="load-more">
-      Load more
-    </button>
+        <div class="lightbox__content">
+          <img class="lightbox__image" src="/" alt="" />
+        </div>
 
-    <div class="lightbox js-lightbox">
-      <div class="lightbox__overlay"></div>
-
-      <div class="lightbox__content">
-        <img class="lightbox__image" src="/" alt="" />
+        <button
+          id="close-button"
+          type="button"
+          class="lightbox__button"
+          data-action="close-lightbox"
+        ></button>
       </div>
-
-      <button
-        id="close-button"
-        type="button"
-        class="lightbox__button"
-        data-action="close-lightbox"
-      ></button>
     </div>
 
     <div class="spinner-overlay is-hidden" id="spinner">
@@ -79,7 +81,9 @@
       </div>
     </div>
 
-    <button id="scrollTtop-button" class="scroll-top is-hidden" onclick="goToUp">&#11014;</button>
+    <button id="scrollTtop-button" class="scroll-top is-hidden">
+      &#11014;
+    </button>
 
     <script src="/path/to/infinite-scroll.pkgd.min.js"></script>
   </body>

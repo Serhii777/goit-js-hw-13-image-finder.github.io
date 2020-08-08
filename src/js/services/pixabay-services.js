@@ -17,6 +17,7 @@ export default {
           this.incrementPage();
           return data.hits;
         })
+        .catch(error => error)
     );
   },
 

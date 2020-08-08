@@ -3,12 +3,11 @@
   flex-direction: row;
   align-items: center;
 
-  @media (max-width: 680px) {
+  @media (max-width: 980px) {
     flex-direction: column;
     align-items: center;
-    margin: 0px auto;
     padding: 20px;
-    max-width: 440px;
+    max-width: 400px;
   }
 
   @media (max-width: 560px) {
@@ -23,7 +22,7 @@
 }
 
 .search-input {
-  width: 550px;
+  width: 500px;
   border: 2px solid #604805;
   border-radius: 2px;
   background-color: #f7f4e4;
@@ -41,7 +40,7 @@
     color: rgba(96, 72, 5, 0.4);
 }
 
-  @media (max-width: 680px) {
+  @media (max-width: 980px) {
     margin-bottom: 20px;
     max-width: 400px;
   }

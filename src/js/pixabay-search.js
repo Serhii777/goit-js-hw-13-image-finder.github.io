@@ -37,35 +37,26 @@ function searchFormSubmitHandler(event) {
 
 function loadMoreBtnHandler() {
   spinner.show();
-  fetchImages();
 
-  window.scrollTo({
-    top: 1000,
+  // setTimeout(fetchImages, 5000);
+  fetchImages();
+  goToUp();
+}
+
+//* TODO Сделать скролл на 12 Об. ---> ГОТОВО
+
+function goToUp() {
+  const element = refs.galleryList.lastElementChild;
+  element.scrollIntoView({
     behavior: 'smooth',
+    block: 'end',
+    inline: 'center',
   });
 }
 
-// TODO Сделать скролл на 12 Об. ---> переделать
-
-//* Прокрутка вверх -> ГОТОВО (переписать по проще)
+//* Прокрутка вверх -> ГОТОВО
 
 // TODO Infinite Scroll
-// var elem = document.querySelector('.container');
-// let infScroll = new InfiniteScroll( elem, {
-// var infScroll = new InfiniteScroll( refs.galleryList, {
-// options
-// path: '.pagination__next',
-// append: '.gallery__item',
-// history: false,
-// });
-// infScroll.loadNextPage();
-// infScroll.fetchImages();
-
-// element argument can be a selector string
-//   for an individual element
-// var infScroll = new InfiniteScroll( '.container', {
-// options
-// });
 
 //! Отрисовка страницы
 function fetchImages() {
@@ -75,7 +66,7 @@ function fetchImages() {
     .fetchImages()
     .then(hits => {
       // console.log(hits);
-      console.log(hits.length);
+      //* console.log(hits.length);
 
       if (hits.length === 0) {
         spinner.hide();
