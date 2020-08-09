@@ -4,21 +4,24 @@ const baseUrl = 'https://pixabay.com/api/';
 export default {
   page: 2,
   query: '',
-  fetchImages() {
+  async fetchImages() {
     const key = '?key=17627900-033e401422c15b0db6e889732';
     const type = '&image_type=photo';
     const orientation = '&orientation=horizontal';
     const requestParams = `&q=${this.query}&page=${this.page}&per_page=12`;
 
-    return (
-      fetch(baseUrl + key + type + orientation + requestParams)
-        .then(response => response.json())
-        .then(data => {
-          this.incrementPage();
-          return data.hits;
-        })
-        .catch(error => error)
-    );
+    try {
+      let response = await fetch(
+        baseUrl + key + type + orientation + requestParams,
+      );
+      let image = await response.json();
+      let hits = await image.hits;
+      this.incrementPage();
+
+      return hits;
+    } catch (error) {
+      return error;
+    }
   },
 
   get searchQuery() {
@@ -29,7 +32,8 @@ export default {
     this.query = string;
   },
 
-  incrementPage() {  //* делаем Мт. для пагинации
+  incrementPage() {
+    //* делаем Мт. для пагинации
     this.page += 1;
   },
 

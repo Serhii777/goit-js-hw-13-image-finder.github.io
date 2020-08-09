@@ -9,18 +9,21 @@
   flex-wrap: wrap;
   justify-content: space-around;
   list-style: none;
-  margin: 0px;
+  text-align: center;
+  margin: 0px 20px;
   padding: 0px;
 }
 
 .gallery__item {
   position: relative;
+  margin: 5px;
+  padding: 5px;
   box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2),
     0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
 }
 
 .photo-card {
-  max-width: 440px;
+  width: 460px;
 
   &__link {
     display: block;
@@ -46,6 +49,7 @@
 }
 
 .stats {
+  text-align: left;
   padding: 0px;
   margin-bottom: 20px;
 }

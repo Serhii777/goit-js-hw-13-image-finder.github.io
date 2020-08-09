@@ -1,4 +1,4 @@
-import pixabayService from './services/pixabay-services';
+import pixabayService from './services/pixabayAsync-services';
 import pixabayGallery from './gallery-item';
 import spinner from './spinner';
 import galleryTemplate from '../templates/photoGallery.hbs';
@@ -31,6 +31,7 @@ function searchFormSubmitHandler(event) {
   // console.log(input.value);
 
   fetchImages();
+  // getImages();
 
   input.value = '';
 }
@@ -38,12 +39,11 @@ function searchFormSubmitHandler(event) {
 function loadMoreBtnHandler() {
   spinner.show();
 
-  // setTimeout(fetchImages, 5000);
   fetchImages();
   goToUp();
 }
 
-//* TODO Сделать скролл на 12 Об. ---> ГОТОВО
+//* Скролл на 12 Об.
 
 function goToUp() {
   const element = refs.galleryList.lastElementChild;
@@ -54,20 +54,14 @@ function goToUp() {
   });
 }
 
-//* Прокрутка вверх -> ГОТОВО
-
 // TODO Infinite Scroll
 
-//! Отрисовка страницы
 function fetchImages() {
   spinner.show();
 
   pixabayService
     .fetchImages()
     .then(hits => {
-      // console.log(hits);
-      //* console.log(hits.length);
-
       if (hits.length === 0) {
         spinner.hide();
         return noticeError();
@@ -83,8 +77,13 @@ function fetchImages() {
     });
 }
 
-function insertListItems(images) {
-  const markupGallery = galleryTemplate(images);
+// function insertListItems(images) {
+//   const markupGallery = galleryTemplate(images);
+//   refs.galleryList.insertAdjacentHTML('beforeend', markupGallery);
+// }
+
+async function insertListItems(images) {
+  const markupGallery = await galleryTemplate(images);
   refs.galleryList.insertAdjacentHTML('beforeend', markupGallery);
 }
 
