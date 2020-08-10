@@ -31,6 +31,7 @@ function onGalleryClick(event) {
   setLargeImageSrc(largeImageUrl);
   setLargeImageAlt(largeImageAlt);
   onOpenModal();
+  const keydownRef = window.addEventListener('keydown', scrollingImages);
 }
 
 function setLargeImageSrc(url) {
@@ -53,13 +54,6 @@ function onOpenModal() {
 
   refs.lightboxRef.classList.add('is-open');
   setTimeout(spinner.hide, 1500);
-
-  console.log(event.target);
-  console.dir(event.currentTarget); //ul
-
-  // const keydown = window.addEventListener('keydown', setNextImage);
-  const keydownRef = window.addEventListener('keydown', scrollingImages);
-  // scrollingImage();
 
   refs.closeModalBtn.addEventListener('click', onCloseModalBtn);
   document.addEventListener('click', onCloseModalRef);
@@ -89,56 +83,67 @@ function onOpenModal() {
 // const slideInterval = setInterval(nextImage, 2000);
 
 function scrollingImages(event) {
-  console.log(event); //кнопка
-  console.dir(event.target); //а
-  console.dir(event.target.parentElement); //* div
-  console.dir(event.target.parentElement); //* li
-  console.dir(event.target.parentElement.parentElement); //*ul
-  console.log(event.target.children); //img
-  console.log(target.dataset.index);
-  
+  // console.log(event); //* кнопка
+  // console.dir(event.target); //* а
+  // console.log(event.target.children); //* img
+  // console.dir(event.target.parentElement); //* div
+  // console.dir(event.target.parentElement.parentElement); //* li
+  // console.dir(event.target.parentElement.parentElement.parentElement); //*ul
+  // console.log(event.currentTarget);
 
-  let currentImage = 0;
+  console.dir(refs.galleryRef);
+
+  // console.log(target.dataset.index);
+
+  let indexButtonClick = 0;
 
   if (event.key === 'ArrowRight' || event.key === 'ArrowDown') {
-    currentImage = 1;
-    console.log('Right', currentImage, 'вход');
+    indexButtonClick = 1;
+    console.log('Right', indexButtonClick, 'вход');
     // scrollingImage(currentImage);
     // return currentImage;
   }
   if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') {
-    currentImage = -1;
-    console.log('Left', currentImage, 'вход');
+    indexButtonClick = -1;
+    console.log('Left', indexButtonClick, 'вход');
     // scrollingImage(currentImage);
     // return currentImage;
   }
 
-  let prevElement = this.currentElement;
+  // let prevElement = this.currentElement;
 
-  console.dir(document);
-  console.dir(document.body);
-  console.dir(document.images.length);
+  // console.dir(document);
+  // console.dir(document.body);
+  // console.dir(document.images.length);
   // console.log(document.body.currentElement);
 
-  // console.log(prevElement);
-  
+  let i = 0;
+  let currentImage = refs.galleryRef.children;
 
-  console.log(refs.galleryRef.children);
-  console.log(refs.galleryRef.children.length);
+  console.log(currentImage);
+  console.log(currentImage[i]);
+  console.log(currentImage[i + indexButtonClick]);
 
+  currentImage = currentImage[i + indexButtonClick];
 
+  // currentImage
+  console.log(currentImage, 'результат');
 
-  let slideIndex = refs.galleryRef.children.length
+  console.log(refs.lightboxRef);
+  console.log(refs.lightboxRef.parentElement);
 
- slideIndex = (currentImage + 1) % slideIndex;
+  // console.log(refs.galleryRef.children.length);
 
-  console.log(event.target.offsetParent, 'результат--1');
+  // console.log(slideIndex, 'начало');
 
-  console.log(slideIndex, 'результат--2');
+  // slideIndex = slideIndex % (currentImage + 1);
 
+  // console.log(event.target.offsetParent, 'результат--1');
+
+  // console.log(slideIndex, 'результат');
+  // slideIndex.classList.add('is-open');
+  // slideIndex[refs.lightboxRef].classList.add('is-open');
   // console.log(currentImage, 'результат');
-
-  // refs.galleryRef.children.length[refs.lightboxRef].classList.add('is-open');
 
   //* var slides = document.querySelectorAll('#slides .slide');
   //* var currentSlide = 0;
