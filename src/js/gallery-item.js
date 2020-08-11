@@ -60,100 +60,108 @@ function onOpenModal() {
   window.addEventListener('keydown', onPressEscape);
 }
 
-// function setNextImage(event) {
-//   let currentImage = 0;
+// function scrollingImages(event) {
+// console.log(event); //* кнопка
+// console.dir(event.target); //* а
+// console.log(event.target.children); //* img
+// console.dir(event.target.parentElement); //* div
+// console.dir(event.target.parentElement.parentElement); //* li
+// console.dir(event.target.parentElement.parentElement.parentElement); //*ul
 
-//   if (event.key === 'ArrowRight' || event.key === 'ArrowDown') {
-//     currentImage = 1;
-//     console.log('Right', currentImage);
-// scrollingImage(currentImage);
-//     return currentImage;
-//   }
-//   if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') {
-//     currentImage = -1;
-//     console.log('Left', currentImage);
-// scrollingImage(currentImage);
-//     return currentImage;
-//   }
-// hits.index = (hits.index + i) % hits.length;
-// repaintBG(Math.abs(hits.index));
+const counter = {
+  index: 0,
+};
+
+console.log(refs.galleryRef);
+// console.dir(refs.galleryRef.children);
+
+
+
+
+
+
+let currentImage = refs.galleryRef.children;
+console.log(currentImage);
+
+
+const openNextImage = i => {
+  // refs.demo.style.backgroundColor = colors[i];
+  // refs.lightboxRef.classList.add('is-open') = currentImage[i];
+
+  console.log(currentImage[i].children);
+  
+};
+
+// function setBG ({target}) {
+//   counter.index = +target.dataset.index;
+//   repaintBG(counter.index)
 // }
 
-// const slides = document.querySelectorAll('#slides .slide');
-// const slideInterval = setInterval(nextImage, 2000);
-
 function scrollingImages(event) {
-  // console.log(event); //* кнопка
-  // console.dir(event.target); //* а
-  // console.log(event.target.children); //* img
-  // console.dir(event.target.parentElement); //* div
-  // console.dir(event.target.parentElement.parentElement); //* li
-  // console.dir(event.target.parentElement.parentElement.parentElement); //*ul
-  // console.log(event.currentTarget);
-
-  console.dir(refs.galleryRef);
-
-  // console.log(target.dataset.index);
-
-  let indexButtonClick = 0;
+  let i = 0;
 
   if (event.key === 'ArrowRight' || event.key === 'ArrowDown') {
-    indexButtonClick = 1;
-    console.log('Right', indexButtonClick, 'вход');
-    // scrollingImage(currentImage);
-    // return currentImage;
+    i = 1;
+    console.log('Right', i, 'вход');
   }
   if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') {
-    indexButtonClick = -1;
-    console.log('Left', indexButtonClick, 'вход');
-    // scrollingImage(currentImage);
-    // return currentImage;
+    i = -1;
+    console.log('Left', i, 'вход');
   }
-
-  // let prevElement = this.currentElement;
-
-  // console.dir(document);
-  // console.dir(document.body);
-  // console.dir(document.images.length);
-  // console.log(document.body.currentElement);
-
-  let i = 0;
-  let currentImage = refs.galleryRef.children;
-
-  console.log(currentImage);
-  console.log(currentImage[i]);
-  console.log(currentImage[i + indexButtonClick]);
-
-  currentImage = currentImage[i + indexButtonClick];
-
-  // currentImage
-  console.log(currentImage, 'результат');
-
-  console.log(refs.lightboxRef);
-  console.log(refs.lightboxRef.parentElement);
-
-  // console.log(refs.galleryRef.children.length);
-
-  // console.log(slideIndex, 'начало');
-
-  // slideIndex = slideIndex % (currentImage + 1);
-
-  // console.log(event.target.offsetParent, 'результат--1');
-
-  // console.log(slideIndex, 'результат');
-  // slideIndex.classList.add('is-open');
-  // slideIndex[refs.lightboxRef].classList.add('is-open');
-  // console.log(currentImage, 'результат');
-
-  //* var slides = document.querySelectorAll('#slides .slide');
-  //* var currentSlide = 0;
-  //* var slideInterval = setInterval(nextSlide,2000);
-
-  //* function nextSlide() {
-  //*     slides[currentSlide].className = 'slide';
-  //*     currentSlide = (currentSlide+1)%slides.length;
-  //*     slides[currentSlide].className = 'slide showing';
+  counter.index = (counter.index + i) % currentImage.length;
+  openNextImage(Math.abs(counter.index));
 }
+
+// let i;
+
+// console.dir(refs.galleryRef.children);
+
+// let currentImage = refs.galleryRef.children;
+
+// console.log(currentImage.length);
+// console.log(currentImage[i]);
+// console.log(currentImage[i + indexButtonClick]);
+
+// if (event.key) {
+//   console.log('key');
+//   refs.lightboxRef.classList.remove('is-open');
+// }
+
+// if (refs.lightboxRef.classList.contains('is-open') === true) {
+//   console.log('True');
+//   refs.lightboxRef.classList.remove('is-open');
+//   currentImage[i + indexButtonClick];
+//   refs.lightboxRef.classList.add('is-open');
+// }
+
+// currentImage.length = currentImage.length%[i + indexButtonClick];
+
+// currentImage
+// console.log(currentImage, 'результат');
+
+// console.log(refs.lightboxRef);
+// console.log(refs.lightboxRef.parentElement);
+
+// console.log(slideIndex, 'начало');
+
+// slideIndex = slideIndex % (currentImage + 1);
+
+// console.log(event.target.offsetParent, 'результат--1');
+
+// console.log(slideIndex, 'результат');
+// slideIndex.classList.add('is-open');
+// slideIndex[refs.lightboxRef].classList.add('is-open');
+// console.log(currentImage, 'результат');
+
+//* var slides = document.querySelectorAll('#slides .slide');
+//* var currentSlide = 0;
+//* var slideInterval = setInterval(nextSlide,2000);
+
+//* function nextSlide() {
+//*     slides[currentSlide].className = 'slide';
+//*     currentSlide = (currentSlide+1)%slides.length;
+//*     slides[currentSlide].className = 'slide showing';
+// }
 
 function onCloseModal() {
   spinner.hide();
