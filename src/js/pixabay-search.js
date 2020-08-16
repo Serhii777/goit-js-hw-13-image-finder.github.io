@@ -71,7 +71,7 @@ function infiniteScroll() {
         .bottom;
       let clientHeight = document.documentElement.clientHeight;
 
-      if (windowRelativeBottom > clientHeight + 1) break;
+      if (windowRelativeBottom > clientHeight + 10) break;
       {
         fetchImages();
 
