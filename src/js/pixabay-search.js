@@ -1,10 +1,16 @@
 import pixabayService from './services/pixabayAsync-services';
-import pixabayGallery from './gallery-item';
 import spinner from './spinner';
 import galleryTemplate from '../templates/photoGallery.hbs';
 import { noticeError, mySuccess } from './services/notices';
 
+var InfiniteScroll = require('infinite-scroll');
+let throttle = require('lodash.throttle');
+const _ = require('lodash');
+
 const refs = {
+  containerGallery: document.querySelector('.wrapper'),
+  sectionGallery: document.querySelector('.section-gallery'),
+
   searchForm: document.querySelector('#search-form'),
   galleryList: document.querySelector('#gallery-list'),
   galleryItem: document.querySelector('.gallery__item'),
@@ -28,22 +34,19 @@ function searchFormSubmitHandler(event) {
 
   pixabayService.resetPage();
   pixabayService.searchQuery = input.value;
-  // console.log(input.value);
 
   fetchImages();
-  // getImages();
+
+  document.addEventListener('scroll', _.throttle(infiniteScroll, 300));
 
   input.value = '';
 }
 
 function loadMoreBtnHandler() {
   spinner.show();
-
   fetchImages();
   goToUp();
 }
-
-//* Скролл на 12 Об.
 
 function goToUp() {
   const element = refs.galleryList.lastElementChild;
@@ -54,7 +57,34 @@ function goToUp() {
   });
 }
 
-// TODO Infinite Scroll
+function infiniteScroll() {
+  function getLastElementValue() {
+    let lastElement = refs.galleryList.getElementsByClassName('gallery__item');
+    return lastElement.length;
+  }
+
+  function loadMore() {
+    let lastItem = getLastElementValue();
+
+    while (true) {
+      let windowRelativeBottom = document.documentElement.getBoundingClientRect()
+        .bottom;
+      let clientHeight = document.documentElement.clientHeight;
+
+      if (windowRelativeBottom > clientHeight + 1) break;
+      {
+        fetchImages();
+
+        if (lastItem) break;
+        {
+          loadMore();
+        }
+      }
+    }
+  }
+
+  loadMore();
+}
 
 function fetchImages() {
   spinner.show();
@@ -76,11 +106,6 @@ function fetchImages() {
       console.warn(error);
     });
 }
-
-// function insertListItems(images) {
-//   const markupGallery = galleryTemplate(images);
-//   refs.galleryList.insertAdjacentHTML('beforeend', markupGallery);
-// }
 
 async function insertListItems(images) {
   const markupGallery = await galleryTemplate(images);

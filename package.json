@@ -55,6 +55,7 @@
     "infinite-scroll": "^3.0.6",
     "lodash": "^4.17.19",
     "lodash.debounce": "^4.0.8",
+    "lodash.throttle": "^4.1.1",
     "minimist": "^1.2.5",
     "pnotify": "^5.1.2"
   }

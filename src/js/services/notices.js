@@ -12,7 +12,7 @@ function noticeError() {
       'Unfortunately, no such images was found, try changing your search parameters!',
     width: '300px',
     type: 'error',
-    delay: 2000,
+    delay: 1500,
     remove: true,
     modal: true,
     overlayClose: true,
@@ -42,7 +42,7 @@ function mySuccess() {
     text: 'We found what you were looking for!',
     width: '300px',
     type: 'success',
-    delay: 2000,
+    delay: 1500,
   });
 }
 

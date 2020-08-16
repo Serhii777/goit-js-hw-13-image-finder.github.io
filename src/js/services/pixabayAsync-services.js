@@ -2,7 +2,7 @@
 
 const baseUrl = 'https://pixabay.com/api/';
 export default {
-  page: 2,
+  page: 1,
   query: '',
   async fetchImages() {
     const key = '?key=17627900-033e401422c15b0db6e889732';
