@@ -51,7 +51,7 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
-    "handlebars": "^4.7.6",
+    "handlebars": "^4.7.7",
     "infinite-scroll": "^3.0.6",
     "lodash": "^4.17.19",
     "lodash.debounce": "^4.0.8",
